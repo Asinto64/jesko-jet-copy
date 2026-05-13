@@ -45,3 +45,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## 📄 License
 This project is private and intended for portfolio and direct domain deployment purposes.
+
+NOT MENTION THE NAME JESKO JET IN THE WEBSITE BECAUSE OF COPYRIGHT
