@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jesko Jets Cinematic Experience
 
-## Getting Started
+## 🛩️ Project Overview
+Jesko Jets is a high-end, premium, and cinematic web experience designed to showcase luxury aviation. Built on a modern tech stack, the project leverages advanced scroll-linked animations, sophisticated typography, and a polished dark-mode aesthetic. 
 
-First, run the development server:
+The core of the experience revolves around "scrollytelling"—where the user's scroll position drives dynamic 3D graphic sequences and smooth opacity transitions, delivering a seamless and engaging storytelling journey.
 
+## ✨ Key Features
+- **Cinematic Scrollytelling:** Interactive image sequence animations controlled directly by scroll position.
+- **High-Fidelity Canvas Rendering:** Implemented custom device pixel ratio scaling (`devicePixelRatio`) to ensure crystal clear, unpixelated graphics on high-DPI displays (like Retina screens).
+- **Smooth Scrolling Engine:** Integration of **Lenis** to provide a buttery smooth scrolling experience, essential for precise scroll-linked animations.
+- **Fluid Micro-Animations:** Driven by **Framer Motion**, offering dynamic text opacity, transform updates, and layout morphing.
+- **Image Preloading System:** A custom React hook (`useImagePreloader`) ensuring all heavy image frames are loaded prior to execution, avoiding stuttering or blank canvas flashes.
+
+## 🛠️ Technical Architecture & Procedure
+
+### 1. The Canvas Sequence Rendering (`PlaneMorph.tsx` & `HeroScroll.tsx`)
+Rather than relying on video elements which can be difficult to scrub smoothly backwards and forwards, the project uses a sequence of high-resolution images rendered onto an HTML5 `<canvas>`. 
+
+- As the user scrolls, `framer-motion`'s `useScroll` hook maps the vertical scroll progress (`[0, 1]`) to the total number of frames.
+- A `requestAnimationFrame` loop efficiently redraws the canvas whenever the frame index changes.
+
+### 2. Device Pixel Ratio (DPI) Optimization
+To achieve premium visual perfection, the canvas context is scaled according to the user's screen density. This procedure prevents the rendering distortions and blurriness typically associated with standard canvas drawings on modern displays.
+
+### 3. Smooth Scroll Provider (`SmoothScrollProvider.tsx`)
+Lenis is implemented at the root layout to override the browser's default scroll behavior. This ensures that the scrolling values fed into Framer Motion are interpolated smoothly, removing any jerky mouse-wheel steps and resulting in a cinematic 60FPS animation.
+
+### 4. Deployment on Vercel
+The project is built on Next.js App Router and optimized for immediate deployment on Vercel. Vercel acts as the hosting environment, utilizing its edge network for rapid delivery of the heavy image assets required for the scrollytelling experience.
+
+## 🚀 Getting Started Locally
+
+First, install dependencies:
+```bash
+npm install
+```
+
+Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 License
+This project is private and intended for portfolio and direct domain deployment purposes.
